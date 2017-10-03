@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 
 <html>
+<head>
+	<title>Requesting</title>
+</head>
 <body>
 	<form method="POST">
-		<input name="foo" type="text"></input>
+		<input name="username" type="text" hint="username"></input>
 		<input type="submit"></input>
 	</form>
+	
+	{% if username %}
+	<h1>Hello {{username}}, you used a {{requestType}} request</h1>
+	{% endif%}
 </body>
 </html>

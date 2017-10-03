@@ -1,15 +1,19 @@
-from flask import Flask, render_template
-import flask
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
-
 @app.route("/", methods=["GET", "POST"])
 def root():
-	#for get requests
-	#print flask.request.args.get("foo")
+	if request.method == "GET":
+		if request.args:
+			return render_template("index.html", 
+				username=request.args["username"],
+				requestType=request.method)
+	elif request.method == "POST":
+		if request.form:
+			return render_template("index.html", 
+				username=request.form["username"],
+				requestType=request.method)
 	
-	#for post requests
-	print flask.request.form.get("foo")
 	return render_template("index.html")
 
 if __name__ == "__main__":
